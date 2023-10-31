@@ -1,0 +1,19 @@
+li a0,3
+Factorial:
+	addi sp,sp,-8
+	sw ra,0(sp)
+    li t0,1
+    beq a0,t0,last_sit
+    sw a0,4(sp)
+	addi a0,a0,-1
+    jal Factorial
+	lw t0,4(sp)
+    mul a1,t0,a1
+    j fact_done
+last_sit: 
+	li a1,1
+fact_done:
+	lw ra,0(sp)
+	addi sp,sp,8
+	mv a0,a1
+	jr ra

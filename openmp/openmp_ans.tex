@@ -1,0 +1,288 @@
+% \documentclass[addpoints, 12pt]{exam}
+\documentclass[addpoints, 12pt]{exam}
+ 
+\usepackage{epstopdf}%my
+\usepackage{makecell}%my
+\usepackage{framed}
+
+\usepackage{mathtools}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{float}
+
+\usepackage{setspace}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+
+\usepackage[ruled,boxed,algo2e]{algorithm2e}
+\usepackage{algorithm}
+\usepackage{pifont}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}%change
+
+
+\usepackage{array}
+
+\usepackage{booktabs}
+
+\usepackage{amsmath,amscd}
+\usepackage{amssymb,array}
+\usepackage{amsfonts,latexsym}
+\usepackage{graphicx,subfig,wrapfig}
+\usepackage{times}
+\usepackage{psfrag,epsfig}
+\usepackage{verbatim}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{graphics}
+\usepackage{caption}
+
+\usepackage{enumerate}
+\usepackage{listings}
+
+\usepackage{ulem}
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks=false,bookmarks=false]{hyperref}
+
+\usepackage{multicol}
+
+\usepackage{lastpage}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\DeclareMathOperator*{\rank}{rank}
+\DeclareMathOperator*{\trace}{trace}
+\DeclareMathOperator*{\acos}{acos}
+\DeclareMathOperator*{\argmax}{argmax}
+
+\renewcommand{\mathbf}{\boldsymbol}
+\newcommand{\mb}{\mathbf}
+\newcommand{\matlab}[1]{\texttt{#1}}
+\newcommand{\setname}[1]{\textsl{#1}}
+\newcommand{\Ce}{\mathbb{C}}
+\newcommand{\norm}[2]{\left\| #1 \right\|_{#2}}
+
+\newcommand{\exercise}[2]{\item[] \textbf{Exercise #1 #2}}
+
+\lstset{frame=none,
+    language=c,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=8
+}
+
+% ADD
+\lstdefinestyle{C} {
+    language = c,
+    commentstyle = \color{olive},
+    keywordstyle = \color{Blue},
+    stringstyle = \color{olive}
+}
+
+% ADD
+\lstdefinestyle{S} {
+    language = s,
+    commentstyle = \color{olive},
+    keywordstyle = ,
+    stringstyle = \color{olive}
+}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheader{Computer Architecture I}{Mid-term Exam 1}{March 9 2023}
+\runningheader{Email:}
+{Final Exam, Page \thepage\ of \numpages}
+{Computer Architecture I 2023}
+\firstpagefooter{}{}{}
+\runningfooter{}{}{}
+
+\boxedpoints
+
+\pointsinmargin
+% \marginpointname{\%}
+
+
+
+\setlength\answerlinelength{.95\linewidth}
+
+
+\begin{document}
+\begin{center}
+
+{\centering \Large Computer Architecture I Mid-term Exam 1\\\vspace{.75cm}}
+
+%\fbox{\fbox{\parbox{5.5in}{\centering
+%Answer the questions in the spaces provided on the
+%question sheets. If you run out of room for an answer,
+%write on the back of the paper. \\\textbf{Put your name in pinyin on top of every page!}}}}\\
+
+\vspace{0.1cm}
+\makebox[\textwidth]{Chinese Name:\enspace\hrulefill}\\[0.6cm]
+\makebox[\textwidth]{Pinyin Name:\enspace\hrulefill}\\[0.6cm]
+\makebox[\textwidth]{Student ID:\enspace\hrulefill}\\[0.6cm]
+\makebox[\textwidth]{E-Mail ... @shanghaitech.edu.cn:\enspace\hrulefill}\\[0.5cm]
+
+
+\begin{multicols}{2}
+\gradetable
+\columnbreak
+
+\begin{itemize}
+\item This test contains \pageref{LastPage} numbered pages, including the cover page, printed on both sides of the sheet.
+\item We will use blackboard for grading, so only answers filled in at the obvious places will be used.
+\item Use the provided blank paper for calculations and then copy your answer here.
+\item Please turn \textbf{off} all cell phones, smartwatches, and other mobile devices. Remove all hats and headphones. Put everything in your backpack. Place your backpacks, laptops and jackets out of reach.
+\item Unless told otherwise always assume a 32bit machine.
+\item The total estimated time is 120 minutes.
+
+\end{itemize}
+
+
+
+
+\end{multicols}
+
+%There are in total 63 (sub-) questions. More than half of them can be answered with a short sentence or less. So you should spend less than 30 minutes for those 33 easy questions and then still have more than two minutes for each of the more difficult questions. The total number of points is 150, so every point contributes 0.667\% to your overall score.
+\begin{itemize}
+
+\item You have 120 minutes to complete this exam. The exam is closed book; no computers, phones, or calculators are allowed. You may use two A4 pages (front and back) of handwritten notes in addition to the provided green sheet.
+%\item The estimated time needed for each of the 7 topics is given in parenthesis - it is 36 minutes for question 1 (Various Questions) and about 15 minutes for each of the 6 others. The total estimated time is 120 minutes.
+\item There may be partial credit for incomplete answers; write as much of the solution as you can. We will deduct points if your solution is far more complicated than necessary. When we provide a blank, please fit your answer within the space provided.
+\item Do \textbf{NOT} start reading the questions/ open the exam until we tell you so!
+% \item Unless otherwise stated, always assume a 32 bit machine for this exam.
+\end{itemize}
+
+
+
+\end{center}
+
+
+\begin{questions}
+
+\question[1] First Task (worth one point): Fill in you name\\
+Fill in your name and email on the front page and your ShanghaiTech email on top of every page (without @shanghaitech.edu.cn) (so write your email in total \numpages ~times).
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% BEGIN OpenMP              %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question \textbf{OpenMP [7 points]}\\
+The following function calculate the numbers of 0 in the array 'b' and 
+assign each item of array b to array a by index weighting.
+
+\begin{lstlisting}[style = S]
+    #include <omp.h>
+
+    int Get_num_zero(int inf,int *a,int *b){
+        int cnt = 0;
+        #pragma omp parallel for
+        for (int i = 0; i < 20; i++) {
+            if (b[i] == 0){
+                #pragma omp critical
+                    cnt ++;
+            }
+            a[i] = b[i] + inf * (i + 1);
+        }
+        return cnt;
+    }
+\end{lstlisting}
+
+\begin{parts}
+    \part[3] \textbf{(True or False)} Please fill your answer (T or F) in the parentheses.
+    
+    \begin{enumerate}
+        \item Both `parallel' and `master' directives have an implicit barrier synchronization at the end of part.        (               )
+        \item We can use `break' instruction to jump outside of `parallel' pragma block.                                 (               )
+        \item We can use `atomic' directive to replace `critical' without data race.                                 (               )   
+    \end{enumerate}
+
+    \begin{framed}
+        \textbf{Solution :} F;F;T
+    \end{framed}
+
+    \part[2] Identify the data sharing attributes of the following variables with shared or private.
+
+
+    \qquad cnt \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \qquad \ \ \ i   \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \begin{framed}
+        \textbf{Solution :} Shared;Private
+    \end{framed}
+    
+    \part[4]
+    Rewrite the for loop part(line 5 - line 10) using `reduction' directive rather than 
+    original `critical' directive and still avoid data race. 
+    Then point out which method is more efficient, and why?
+    (You don't need to use all blank line if not necssary.)\\
+
+    \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \begin{framed}
+        \textbf{Solution :}
+        \begin{lstlisting}[style = S]
+            #pragma omp parallel for reduction(+:cnt)
+            for (int i = 0; i < 20; i++) {
+                if (b[i] == 0) {
+                    cnt++;
+                }
+                a[i] = b[i] + inf * (i + 1);
+            }
+        \end{lstlisting}
+
+        `reduction' method is better.\\
+        The advantage of using the reduction directive is that it can improve performance while ensuring correctness, 
+        because multiple threads can update their private variables simultaneously without the need to mutually execute the critical section code as in the critical directive, 
+        thereby reducing unnecessary overhead.
+    \end{framed}
+
+\end{parts}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% END OpenMP              %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{questions}
+\end{document}

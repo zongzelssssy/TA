@@ -1,0 +1,9 @@
+Exercise 1
+This is because within the parallel region, OpenMP does the code in parallel and as a result does not enforce an ordering across all the threads.
+
+
+Exercise 2
+1. See in matmul_ans.c
+2.As for the performance differences between the methods we implemented, the chunking method generally performs better than the slicing method. This is because in the chunking method, each thread has a larger chunk of data to work on, which reduces false sharing and cache misses. On the other hand, in the slicing method, each thread has to work on adjacent rows, which can cause false sharing and cache thrashing if the threads are working on adjacent memory addresses.
+3.Using OpenMP may not necessarily lead to optimal performance on a single compute node with multiple cores because it depends on the specific hardware and workload. OpenMP is designed to be a general-purpose parallel programming model, but it may not be the most efficient or effective way to parallelize a particular algorithm or application. For example, some hardware architectures may have better performance with other parallel programming models like MPI or CUDA. Additionally, some algorithms may not be easily parallelizable, or may have limitations on the amount of parallelism that can be achieved due to data dependencies or other constraints.
+4.As for the bonus optimization, we could try to further reduce false sharing by using padding to ensure that each thread's output buffer is aligned with cache lines. This can be done by adding extra elements to the output buffer to fill up the space between each row. We could experiment with different padding sizes to see how it affects performance. However, the impact of this optimization may be small compared to the gains from using the chunking method, and it may not be worth the added complexity and memory usage.
