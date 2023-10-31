@@ -1,0 +1,7 @@
+line 11: add t2, t3, x0
+line 14: blt t0, a0, Fibonacci_loop
+line 32: jal ra, Factorial
+line 37: mul a1, a1, t5
+
+line 12: 0x000E05B3
+line 38: 0x00008067

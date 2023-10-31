@@ -1,0 +1,402 @@
+% \documentclass[addpoints, 12pt]{exam}
+\documentclass[addpoints, 12pt]{exam}
+
+% If want to compile a version without solution, comment line 2 and uncomment line 1
+% elsewise, comment line 1 and uncomment line 2
+
+% \usepackage{etex}
+% \reserveinserts{28}
+% \usepackage{xpatch}
+
+% Need both to patch both instances (choice, correctchoice) in the oneparchoices environment.
+% Unless there is a global replacement that works within an environment. I don't know.
+% Replaces \hskip 1em with \hfill
+% \xpatchcmd{\oneparchoices}{\penalty -50\hskip 1em plus 1em\relax}{\hfill}{}{}
+% \xpatchcmd{\oneparchoices}{\penalty -50\hskip 1em plus 1em\relax}{\hfill}{}{}
+
+
+\usepackage{epstopdf}%my
+\usepackage{makecell}%my
+
+\usepackage{mathtools}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{float}
+
+\usepackage{setspace}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+
+\usepackage[ruled,boxed,algo2e]{algorithm2e}
+\usepackage{algorithm}
+\usepackage{pifont}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}%change
+
+
+\usepackage{array}
+
+\usepackage{booktabs}
+
+\usepackage{amsmath,amscd}
+\usepackage{amssymb,array}
+\usepackage{amsfonts,latexsym}
+\usepackage{graphicx,subfig,wrapfig}
+\usepackage{times}
+\usepackage{psfrag,epsfig}
+\usepackage{verbatim}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{graphics}
+\usepackage{caption}
+
+\usepackage{enumerate}
+\usepackage{listings}
+
+\usepackage{ulem}
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks=false,bookmarks=false]{hyperref}
+
+\usepackage{multicol}
+
+\usepackage{lastpage}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\DeclareMathOperator*{\rank}{rank}
+\DeclareMathOperator*{\trace}{trace}
+\DeclareMathOperator*{\acos}{acos}
+\DeclareMathOperator*{\argmax}{argmax}
+
+\renewcommand{\mathbf}{\boldsymbol}
+\newcommand{\mb}{\mathbf}
+\newcommand{\matlab}[1]{\texttt{#1}}
+\newcommand{\setname}[1]{\textsl{#1}}
+\newcommand{\Ce}{\mathbb{C}}
+\newcommand{\norm}[2]{\left\| #1 \right\|_{#2}}
+
+\newcommand{\exercise}[2]{\item[] \textbf{Exercise #1 #2}}
+
+\lstset{frame=none,
+    language=c,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue},
+    commentstyle=\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=8
+}
+
+% ADD
+\lstdefinestyle{C} {
+    language = c,
+    commentstyle = \color{olive},
+    keywordstyle = \color{Blue},
+    stringstyle = \color{olive}
+}
+
+% ADD
+\lstdefinestyle{S} {
+    language = s,
+    commentstyle = \color{olive},
+    keywordstyle = ,
+    stringstyle = \color{olive}
+}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+
+
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheader{Computer Architecture I}{Mid-term Exam 1}{March 9 2023}
+\runningheader{Email:}
+{Final Exam, Page \thepage\ of \numpages}
+{Computer Architecture I 2023}
+\firstpagefooter{}{}{}
+\runningfooter{}{}{}
+
+\boxedpoints
+
+\pointsinmargin
+% \marginpointname{\%}
+
+
+
+\setlength\answerlinelength{.95\linewidth}
+
+
+\begin{document}
+\begin{center}
+
+{\centering \Large Computer Architecture I Mid-term Exam 1\\\vspace{.75cm}}
+
+%\fbox{\fbox{\parbox{5.5in}{\centering
+%Answer the questions in the spaces provided on the
+%question sheets. If you run out of room for an answer,
+%write on the back of the paper. \\\textbf{Put your name in pinyin on top of every page!}}}}\\
+
+\vspace{0.1cm}
+\makebox[\textwidth]{Chinese Name:\enspace\hrulefill}\\[0.6cm]
+\makebox[\textwidth]{Pinyin Name:\enspace\hrulefill}\\[0.6cm]
+\makebox[\textwidth]{Student ID:\enspace\hrulefill}\\[0.6cm]
+\makebox[\textwidth]{E-Mail ... @shanghaitech.edu.cn:\enspace\hrulefill}\\[0.5cm]
+
+
+\begin{multicols}{2}
+\gradetable
+\columnbreak
+
+\begin{itemize}
+\item This test contains \pageref{LastPage} numbered pages, including the cover page, printed on both sides of the sheet.
+\item We will use blackboard for grading, so only answers filled in at the obvious places will be used.
+\item Use the provided blank paper for calculations and then copy your answer here.
+\item Please turn \textbf{off} all cell phones, smartwatches, and other mobile devices. Remove all hats and headphones. Put everything in your backpack. Place your backpacks, laptops and jackets out of reach.
+\item Unless told otherwise always assume a 32bit machine.
+\item The total estimated time is 120 minutes.
+
+\end{itemize}
+
+
+
+
+\end{multicols}
+
+%There are in total 63 (sub-) questions. More than half of them can be answered with a short sentence or less. So you should spend less than 30 minutes for those 33 easy questions and then still have more than two minutes for each of the more difficult questions. The total number of points is 150, so every point contributes 0.667\% to your overall score.
+\begin{itemize}
+
+\item You have 120 minutes to complete this exam. The exam is closed book; no computers, phones, or calculators are allowed. You may use two A4 pages (front and back) of handwritten notes in addition to the provided green sheet.
+%\item The estimated time needed for each of the 7 topics is given in parenthesis - it is 36 minutes for question 1 (Various Questions) and about 15 minutes for each of the 6 others. The total estimated time is 120 minutes.
+\item There may be partial credit for incomplete answers; write as much of the solution as you can. We will deduct points if your solution is far more complicated than necessary. When we provide a blank, please fit your answer within the space provided.
+\item Do \textbf{NOT} start reading the questions/ open the exam until we tell you so!
+% \item Unless otherwise stated, always assume a 32 bit machine for this exam.
+\end{itemize}
+
+
+
+\end{center}
+
+
+\begin{questions}
+
+\question[1] First Task (worth one point): Fill in you name\\
+Fill in your name and email on the front page and your ShanghaiTech email on top of every page (without @shanghaitech.edu.cn) (so write your email in total \numpages ~times).
+
+
+\newpage
+
+
+% 30 min
+\question[2] \textbf{Introduction [2 points]}
+%I have a puzzle for Amdahl's Law. You guys can work on Moore's Law. (Siting)
+\begin{enumerate}[(1)]
+	\item Moore's Law
+	\item Amdahl's Law
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                  %%
+%% BEGIN number representation. %%
+%%                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question[9] \textbf{Number representation [9 points]}\\
+% Related to signed & unsigned numbers
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                  %%
+%% END number representation  %%
+%%                                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% BEGIN C basics %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question \textbf{C basics [10 points]}
+% pointer/array/struct, we did not cover union on lecture.
+\begin{parts}
+    \part[5] \textbf{Q1 [5 points]}\\
+    %\newpage
+    \part[5]\textbf{Q2 [5 points]}\\
+    %\newpage
+\end{parts}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% END C basics  %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% BEGIN C memory management %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question[12] \textbf{C memory management [12 points]}
+% malloc/realloc/free. Stack/static/heap
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% END C C memory management  %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% BEGIN RISC-V              %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question \textbf{RISC-V assembly [12 points]}\\
+\begin{parts}
+    \part[4] \textbf{Arithmetic [4 points]}\\
+    % I have got an idea for this problem (Siting)
+    \part[8]
+    In this question, you need to calculate the Factorial of the n-th term of Fibonacci number sequence.
+    The first two items are (0, 1) by default, and n is not included. \\
+    For example, if n=3, you should print 6 (3!). [8 points] \\
+    \textbf{Hint} : Factorial part is realized by recursion. \\
+    
+    \begin{lstlisting}[style = S]
+    main:
+        li      t0, 0     
+        li      t1, 0                       # Default 0 item
+        li      t2, 1                       # Default 1 item
+        li      a0, n                       # Input parameter n
+        li      a1, 0
+        beq     a0, t0, End   
+    Fibonacci_loop:
+        add     t3, t1, t2    
+        add     t1, t2, x0
+        __________________  
+        add     a1, t3, x0    
+        addi    t0, t0, 1    
+        __________________
+        jal     ra, Factorial
+    End:
+        li      a0, 1     
+        ecall         
+        li      a0, 10      
+        ecall            
+    Factorial:
+        addi    sp, sp, -8   
+        sw      ra, 4(sp)     
+        sw      a1, 0(sp)                    
+        addi    t4, a1, -1     
+        bge     t4, x0, Factorial_loop  
+        addi    a1, x0, 1       
+        addi    sp, sp, 8       
+        jalr    x0, ra, 0      
+    Factorial_loop:
+        addi    a1, a1, -1  
+        __________________ 
+        addi    t5, a1, 0    
+        lw      a1, 0(sp)     
+        lw      ra, 4(sp)     
+        addi    sp, sp, 8      
+        __________________
+        jalr    x0, ra, 0
+    \end{lstlisting}
+
+    Fill in the missing code below.\\
+
+    \qquad line 11: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \qquad line 14: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \qquad line 32: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \qquad line 37: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \part[2]
+    Translate instructions to machine code written in \textbf{hexadecimal}. [2 pionts]\\
+
+    \qquad line 12: add a1, t3, x0  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+    \qquad line 38: jalr x0, ra, 0  \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\
+
+
+
+
+
+\end{parts}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% END RISC-V              %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% BEGIN Call convention/linker/loader/assembler  %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question[12] \textbf{Call convention/linker/loader/assembler [12 points]}\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% END Call convention/linker/loader/assembler              %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% BEGIN Logic %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question[12] \textbf{Logic [12 points]}\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% END Logic          %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% BEGIN SDS/FSM  %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question[15] \textbf{SDS/FSM [15 points]}\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% END SDS/FSM              %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% BEGIN RISC-V datapath  %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\question[15] \textbf{RISC-V datapath [15 points]}\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                %%
+%% END RISC-V datapath              %%
+%%                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{questions}
+\end{document}
